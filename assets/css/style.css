@@ -1287,12 +1287,14 @@ padding-top: 164px;
     margin-bottom: 90px;
 }
 .reason-img--01{
-  /* position: absolute;
-  top: 276px;
-  right: -54px; */
-  /* width: auto; */
-  aspect-ratio: 187/274;
-  margin-top: 81px;
+    /* position: absolute;
+    top: 276px;
+    right: -54px; */
+    /* width: auto; */
+    aspect-ratio: 187/274;
+    margin-top: 81px;
+    width: 100%;        /* ←追記 */
+    object-fit: cover;  /* ←追記（画像が歪むのを防ぐ） */
 
 }
 .reason-img--02{
@@ -1302,6 +1304,8 @@ padding-top: 164px;
     aspect-ratio: 171/272;
     /* min-width: 172px; */
     margin-bottom: 83px;
+    width: 100%;        /* ←追記 */
+    object-fit: cover;  /* ←追記（画像が歪むのを防ぐ） */
     
 }
 
