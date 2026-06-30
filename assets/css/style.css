@@ -1284,6 +1284,7 @@ padding-top: 164px;
     width: calc(100% + 24px * 2);
     margin-top: 11px;
     position: relative;
+    margin-bottom: 90px;
 }
 .reason-img--01{
   /* position: absolute;
