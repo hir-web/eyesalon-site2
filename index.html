@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- favicon apple-touch-icon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="904×904" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="assets/images/android-chrome-256x256.png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="アイサロンのホームページ">
+    <meta name="robots" content="noindex">
+    <title>NUURA</title>
+
+    <!-- web font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/destyle.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="opening-active">
+    <div id="opening-mask">
+        <div class="opening-stage">
+            <h1 class="opening-logo" id="anim-logo">
+                <span class="part-nude">Nude</span>
+                <span class="part-aura">Aura</span>
+            </h1>
+            <div class="opening-subtexts" id="anim-subtexts">
+                <p class="sub-left">“ありのまま”</p>
+                <p class="sub-right">“その人が持つ美しさ”</p>
+            </div>
+        </div>
+    </div>
+     <div id="container" class="container">
+        <header class="header js-header">
+            <h1 class="header__topic">
+                <a href="index.html">
+                    <img class="header__logo--w" src="assets/images/logo-w.png" alt="NUURA">
+                    <img class="header__logo--b" src="assets/images/logo.png" alt="NUURA">
+                </a>
+            </h1>
+            <nav class="nav" id="g-nav">
+                <div class="nav__header">
+                    <button type="button" class="nav__btn" aria-label="メニューを閉じる">
+                        <img src="assets/images/btn-header-close.svg" alt="">
+                    </button>
+                </div>
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html">Home</a></li>
+                    <li class="nav__item"><a href="about.html">About</a></li>
+                    <li class="nav__item"><a href="menu.html">Menu</a></li>
+                    <li class="nav__item"><a href="question.html">Q&A</a></li>
+                    <li class="nav__item"><a href="access.html">Access</a></li>
+                    <li class="nav__item"><a href="reservation.html">Reservation</a></li>
+                </ul>
+                <a href="https://www.instagram.com/nuura__beauty/" class="nav__insta__btn" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/images/btn-insta-w.svg" alt="">
+                </a>
+            </nav>
+            <!-- .header__btn  -->
+            <div class="header__list">
+                <a href="https://www.instagram.com/nuura__beauty/" class="insta__btn" target="_blank" rel="noopener noreferrer">
+                    <!-- <img class="insta__btn--w" src="assets/images/btn-insta-w.svg" alt=""> -->
+                    <img class="insta__btn--b" src="assets/images/btn-insta-b.svg" alt="">
+                </a>
+                <button type="button" class="header__btn" aria-controls="g-nav" aria-expanded="false" aria-label="メニューを開く">
+                    <img class="header__btn--w" src="assets/images/btn-header-menu-w.svg" alt="">
+                    <img class="header__btn--b" src="assets/images/btn-header-menu-b.svg" alt="">
+                </button>
+            </div>
+        </header>
+
+        <div class="fixed-left-pc">
+            <a href="index.html" class="fixed-left-pc__logo">
+                <img src="assets/images/logo-w.png" alt="NUURA">
+            </a>
+        </div>
+
+        <div class="fixed-right-pc">
+            <nav class="header__nav-pc">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html">Home</a></li>
+                    <li class="nav__item"><a href="about.html">About</a></li>
+                    <li class="nav__item"><a href="menu.html">Menu</a></li>
+                    <li class="nav__item"><a href="question.html">Q&A</a></li>
+                    <li class="nav__item"><a href="access.html">Access</a></li>
+                </ul>
+                <a href="https://www.instagram.com/nuura__beauty/" class="nav__insta__btn" target="_blank" rel="noopener noreferrer">
+                    <img class="insta__btn--b" src="assets/images/btn-insta-b.svg" alt="">
+                </a>
+            </nav>
+            <div class="reservation-round-btn-wrapper reservation-round-btn-wrapper--pc">
+                <a href="reservation.html#reservation-method" class="reservation-round-btn">
+                    <div class="reservation-round-arc-text js-arcText"><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span></div>
+                    <span class="reservation-round-center-text">Reservation</span>
+                </a>
+            </div>
+        </div>
+
+        <main class="main">
+            <div class="reservation-round-btn-wrapper reservation-round-btn-wrapper--sp">
+                <a href="reservation.html#reservation-method" class="reservation-round-btn">
+                    <div class="reservation-round-arc-text js-arcText"><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span></div>
+                    <span class="reservation-round-center-text">Reservation</span>
+                </a>
+            </div>
+            <header class="article-header">
+                <figure class="mainImg">
+                    <picture>
+                        <source srcset="assets/images/img_main-sp.jpg" media="(max-width: 767px)" />
+                        <img src="assets/images/img_main-sp.jpg" alt="メイン画像" />
+                    </picture>
+                </figure>
+                <div class="mainTopics">
+                    <h2 class="mainTopics-title">
+                        Nude × Aura
+                    </h2>
+                    <p class="mainTopics-txt">
+                        足しすぎず、削りすぎず。<br>
+                        あなたらしく。<br>
+                        “その人らしさ”がいちばんきれいに見える<br>
+                        お目元に。
+                    </p>
+                </div>
+            </header>
+            <div class="js-centinel-header"></div>
+            <section id="top__about" class="section section--top__about">
+                <div class="top__about-inner">
+                    <ul class="top__about-gallery-01">
+                        <li class="top__about-gallery__item-01">
+                            <img src="assets/images/top__about-01.jpg" alt="">
+                        </li>
+                        <li class="top__about-gallery__item-02">
+                            <img src="assets/images/top__about-02.jpg" alt="">
+                        </li>
+                    </ul>
+                    <h3 class="top__about-title">NUURA is</h3>
+                    <div class="top__about-topic">
+                        <p class="top__about-topic-txt-01">綺麗になりたいあなたに寄り添う、<br>
+                            プライベートアイサロン。
+                        </p>
+                        <p class="top__about-topic-txt-02">
+                            居心地の良い空間と時間、<br>
+                            心から満足いただける仕上がりを<br>
+                            お届けします。
+                        </p>
+                    </div>
+                    <ul class="top__about-gallery-02">
+                        <li class="top__about-gallery__item-03">
+                            <img src="assets/images/top__about-03.jpg" alt="">
+                        </li>
+                        <li class="top__about-gallery__item-04">
+                            <img src="assets/images/top__about-04.jpg" alt="">
+                            <div class="top__about-gallery__message">
+                                <p>
+                                    <span class="top__about-gallery__message-row">In soft light<br></span>
+                                    <span class="top__about-gallery__message-row">and stillness,<br></span>
+                                    <span class="top__about-gallery__message-row">your mind<br></span>
+                                    <span class="top__about-gallery__message-row">begins to unwind.</span>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="top__about-button">
+                        <a href="about.html" class="c-btn-more">
+                            <span>About</span>
+                            <img src="assets/images/btn-more.svg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <section id="top__menu" class="section section--top__menu">
+                <div class="top__menu-inner">
+                    <h3 class="section-title-font-en">Design Gallery</h3>
+                    <div class="swiper top__menu-swiper">
+                        <ul class="swiper-wrapper top__menu-gallery">
+                            <li class="swiper-slide top__menu-gallery__item">
+                                <img src="assets/images/top__menu-01.jpg" alt="">
+                            </li>
+                            <li class="swiper-slide top__menu-gallery__item">
+                                <img src="assets/images/top__menu-02.jpg" alt="">
+                            </li>
+                            <li class="swiper-slide top__menu-gallery__item">
+                                <img src="assets/images/top__menu-03.jpg" alt="">
+                            </li>
+                            <li class="swiper-slide top__menu-gallery__item">
+                                <img src="assets/images/top__menu-04.jpg" alt="">
+                            </li>
+                            <li class="swiper-slide top__menu-gallery__item">
+                                <img src="assets/images/top__menu-05.jpg" alt="">
+                            </li>
+                        </ul>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <div class="top__menu-topic">
+                        <p class="top__menu-topic-txt-01">
+                            作り込みすぎず、でも垢抜ける。
+                        </p>
+                        <p class="top__menu-topic-txt-02">
+                            流行りのデザインだけでなく、<br>
+                            その人の骨格・雰囲気・ライフスタイルに<br>
+                            合ったデザインを大切にしています。<br>
+                            特に眉毛は、お顔全体の印象を大きく<br>
+                            左右するからこそ、“その人らしさ”を<br>
+                            引き出すことを意識しています。
+                        </p>
+                    </div>
+                    <a href="menu.html" class="c-btn-more">
+                        <span>Menu</span>
+                        <img src="assets/images/btn-more.svg" alt="">
+                    </a>
+                </div>
+            </section>
+            <section id="top__access" class="section section--top__access">
+                <div class="top__access-inner">
+                    <h3 class="section-title-font-en">Salon Information</h3>
+                    <div class="top__access-topic">
+                        <p class="top__access-topic-txt">姫路の自宅サロンと元町のシェアサロンの<br>
+                            ２拠点で営業しております。<br>
+                            営業日や予約方法についても異なりますので、<br>
+                            こちらからご確認ください。
+                        </p>
+                    </div >
+                    <a href="access.html#himeji" class="p-top-access__link-banner p-top-access__link-himeji">
+                        <img src="assets/images/btn-top__access-himeji.jpg" alt="姫路店アクセス">
+                        <span>Himeji</span>
+                    </a>
+                    <a href="access.html#motomachi" class="p-top-access__link-banner p-top-access__link-motomachi">
+                        <img src="assets/images/btn-top__access-motomachi.jpg" alt="元町店アクセス">
+                        <span>Motomachi</span>
+                    </a>
+                </div>
+            </section>
+            <section id="top__reservation" class="section section--top__reservation">
+                <div class="top__reservation-inner">
+                    <div class="top__reservation-box">
+                        <h3 class="section-title-font-en">Reservation</h3>
+
+                        <div class="vertical-line"></div>
+
+                        <a href="reservation.html" class="btn-link-beforeBooking">
+                            <span>ご予約前に、こちらをご確認ください。</span>
+                            <!-- <img src="assets/images/btn-beforeBooking.svg" alt=""> -->
+                        </a>
+                    </div>
+                    <a href="reservation.html#reservation-method" class="c-btn-more">
+                        <span>Reservation</span>
+                        <img src="assets/images/btn-more.svg" alt="">
+                    </a>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <section class="footer-inner">
+                <img src="assets/images/logo-w.png" alt="NUURA">
+
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="index.html">Home</a></li>
+                    <li class="footer__item"><a href="about.html">About</a></li>
+                    <li class="footer__item"><a href="menu.html">Menu</a></li>
+                    <li class="footer__item"><a href="question.html">Q&A</a></li>
+                    <li class="footer__item"><a href="access.html">Access</a></li>
+                    <li class="footer__item"><a href="reservation.html">Reservation</a></li>
+                </ul>
+
+                <p class="copy"><small>&copy; NUURA 2026</small></p>
+            </section>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>   
+    <script>
+        const swiper = new Swiper('.top__menu-swiper', {
+            loop: true,
+            slidesPerView: 1,
+            centeredSlides: true,
+            spaceBetween: 38,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2067 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Serif+JP:wght@400;500&display=swap');
+
+
+/* ==============
+   Variables
+   =============*/
+:root {
+    /* Colors */
+    --text-color: #000;
+    --bg-color: #fff;
+
+    /* Fonts */
+    --font-ja: "Noto Serif JP", serif;
+    --font-en: "Cormorant Garamond", serif;
+}
+
+/* ============
+   Base Styles
+   ============*/
+html {
+    font-size: 62.5%;
+    /* スムーズスクロールを有効にする場合 */
+    scroll-behavior: smooth;
+}
+
+p {
+    font-size: 1.4rem ;
+}
+
+body {
+    font-family: var(--font-ja);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    font-weight: 400;
+    line-height: 1.7; /* 行間170% */
+    letter-spacing: 0.02em; /* 文字間隔2% (0.02em) */
+    -webkit-font-smoothing: antialiased; /* フォントを滑らかに表示 */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+main{
+    background-color: #F7F7F7
+}
+
+/* 画像が親要素を突き抜けないようにする */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 英語タイトル */
+.section-title-font-en {
+    font-family: var(--font-en);
+    font-weight: 400; /* Regular */
+    font-size: 3.2rem ;
+    letter-spacing: 0.09em;
+
+}
+
+/* ============================================
+   共通
+============================================ */
+
+.fixed-left-pc,
+.fixed-right-pc {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .fixed-left-pc {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: calc((100% - 375px) / 2);
+        background: url(../images/pc-left-bg.jpg) no-repeat 50% 50% / cover;
+    }
+
+    .fixed-right-pc {
+        display: flex;
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: calc((100% - 375px) / 2);
+        background: url(../images/pc-right-bg.jpg) no-repeat 50% 50% / cover;
+        justify-content: center;
+        align-items: center;
+        z-index: 101;
+        flex-direction: column;
+        gap: 0px;
+    }
+}
+
+/* --- ロゴの出し分け設定 --- */
+
+/* デフォルト（スマホ・タブレット）ではPCサイドバー用のロゴを隠す */
+.fixed-left-pc__logo {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    /* PC時：ヘッダー内の白いロゴを非表示にする（必要に応じて） */
+    .header__logo--w {
+        display: none;
+    }
+
+    .fixed-left-pc__logo {
+        display: block;
+        position: absolute;
+        top: 40px;  /* 上からの距離（デザインに合わせて調整してください） */
+        left: 30px; /* 左からの距離（デザインに合わせて調整してください） */
+        width: 161px; /* ロゴのサイズ調整 */
+    }
+    
+    .fixed-left-pc__logo img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* ===============
+opning
+================ */
+
+/* --- オープニング全体の背景（白い幕） --- */
+#opening-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #faf8f5; /* 1枚目の上品なオフホワイト */
+  z-index: 99999; /* 既存のどの要素よりも手前に配置 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease 0.4s, visibility 0.8s ease 0.4s;
+}
+
+/* オープニング終了時にマスクをフェードアウト */
+#opening-mask.is-hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* 中央のステージ設定 */
+.opening-stage {
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* --- ロゴの初期スタイル（中央・離れている・黒文字） --- */
+.opening-logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 4.5rem;
+  font-weight: 200;
+  color: #000; /* 最初は黒文字 */
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  
+  /* アニメーション用の絶対配置 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  
+  /* すべての変化を滑らかにつなぐ */
+  transition: 
+    top 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+    left 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+    width 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+    font-size 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+    color 0.5s ease;
+}
+
+.opening-logo.is-centered {
+    justify-content: center;
+}
+
+/* --- 【アニメーション進行1】中央で合体（文字幅を縮める） --- */
+.opening-logo.is-merged {
+  width: 260px; /* NUURAの文字幅に合わせる（要微調整） */
+}
+
+/* --- 【アニメーション進行2】目的地へ移動しながら白文字化 --- */
+.opening-logo.is-moved {
+  color: #ffffff; /* ★ここで白文字に変化 */
+  width: auto;
+  
+  /* [PC環境用（画面サイズ1024px以上を想定）の目的地] */
+  /* 既存の .fixed-left-pc のロゴ位置に合わせる */
+  top: 40px;
+  left: 40px; 
+  /* transform: translate(0, 0); */
+  transform: translate(calc(-50vw + 330px), calc(-50vh + 44px));
+  /* transform: translate(-220%, -900%); */
+  font-size: 1.8rem; /* 既存のロゴ画像と同じくらいのサイズ感に縮小 */
+}
+
+.part-aura {
+    position: relative;
+    left: -20px;
+}
+
+.sub-left {
+    position: relative;
+    left: 15px;
+}
+
+/* 日本語コピーのスタイル */
+.opening-subtexts {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 3rem;
+  color: #000;
+  font-size: 1.1rem;
+  font-family: "Noto Serif JP", serif;
+  transition: opacity 0.6s ease;
+}
+
+.opening-subtexts.is-fadeout {
+  opacity: 0;
+}
+
+/* スマホ環境（767px以下）の時は、中央上のヘッダー位置へ移動させる */
+@media screen and (max-width: 767px) {
+  .opening-logo.is-moved {
+    /* 既存の .header__topic の中央ロゴ付近に合わせる */
+    top: 20px;
+    left: 50%;
+    /* transform: translate(-50%, 0); */
+    transform: translate(calc(-50vw + 20px), calc(-50vh + 20px));
+    /* transform: translate(-220%, -900%); */
+    font-size: 1.5rem;
+  }
+}
+
+/* PC版（画面幅 768px 以上）の時の文字サイズ調整 */
+@media (min-width: 768px) {
+   
+    .part-aura {
+        left: 0;
+    } 
+
+    .sub-left {
+        position: relative;
+        left: 8px;
+    }
+
+    .sub-right {
+        position: relative;
+        left: 55px;
+    }
+    
+  /* 1. メインロゴ（Nude Aura / NUURA）のサイズ */
+  .opening-logo {
+    font-size: 6rem; /* スマホ版より大きく。適宜数値を調整してください */
+    letter-spacing: 0.1em; /* 文字間を少し広げると高級感が出ます */
+  }
+
+  /* 2. 日本語のサブテキスト（ありのまま... 等）のサイズ */
+  .opening-subtexts  {
+    font-size: 2.5rem; /* PCで見やすい大きさに調整。適宜数値を調整してください */
+    margin-top: 30px; /* ロゴとの間隔も調整 */
+    gap: 40px; /* 左右のテキストの間隔を広げる場合 */
+  }
+
+  .opening-subtexts p {
+    font-size: inherit;
+    line-height: 1.8;
+  }
+}
+
+
+/* --- 3. 既存のサイト本体のコントロール --- */
+/* オープニング中はスクロールさせない */
+body.opening-active {
+  overflow: hidden;
+}
+
+/* 既存のヘッダーロゴ画像やナビゲーションは、
+  合体ロゴが重なって幕が消えるまで非表示にしておく
+*/
+/*.fixed-left-pc_logo,
+.header__topic,
+.fixed-right-pc,
+.main {
+  opacity: 0;
+  transition: opacity 0.8s ease 0.6s; /* 演出終了に合わせてふわっと出す 
+}*/
+
+body.opening-active .fixed-left-pc_logo,
+body.opening-active .header__topic,
+body.opening-active .fixed-right-pc,
+body.opening-active .main {
+  opacity: 0;
+  transition: opacity 0.8s ease 0.6s; /* 演出終了に合わせてふわっと出す */
+}
+
+
+/* オープニングが完了したら全部表示する */
+body.opening-done .fixed-left-pc_logo,
+body.opening-done .header__topic,
+body.opening-done .fixed-right-pc,
+body.opening-done .main {
+  opacity: 1;
+}
+
+
+/* ===============
+header
+================ */
+
+/* ヘッダー全体 */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 13px 24px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 10; /* 画像の上 */
+
+    @media screen and (min-width:768px) { 
+        display: none;
+    }
+}
+
+/* 特定のページでヘッダー背景を白にする */
+.header.is-white {
+    background-color: #fff;
+}
+
+.header.is-transparent{
+    background-color: transparent;
+}
+
+
+/*  ロゴ（画像） */
+.header__topic img {
+    width: 85px; 
+}
+
+.header__list{
+    display: flex;
+    align-items: center; /* 垂直方向の中央揃え */
+    gap: 5px;
+}
+
+/* PC用ナビゲーション表示設定 */
+.header__nav-pc {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .header__nav-pc {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .header__nav-pc .nav__list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header__nav-pc .nav__item a {
+        font-size: 2rem;
+        letter-spacing: 0.1em;
+        border-bottom: none;
+        color: #000;
+        transition: color 0.3s;
+    }
+
+    .header__nav-pc .nav__insta__btn {
+        width: 47px;
+        margin-top: 0;
+        margin-left: 0;
+    }
+}
+
+.insta__btn{
+    display: block;
+    width: 44px;
+    cursor: pointer;
+}
+
+.insta__btn--b {
+    display: none;
+}
+
+
+.header.is-white .insta__btn--b {
+    display: block;
+}
+
+/* サイドバー内のInstagramアイコンのサイズ調整 */
+.fixed-right-pc .nav__insta__btn img {
+    width: 47px; /* SVG本来のサイズに合わせる */
+}
+
+.header.is-white .insta__btn--w {
+    display: none;
+}
+
+/* PC版で不要なハンバーガーボタン等を隠す */
+    @media screen and (min-width: 768px) {
+        .header__btn,
+        .header__list .insta__btn {
+            display: none;
+        }
+    }
+
+    /* PCで非表示にするための設定例 */
+    @media screen and (min-width: 768px) {
+        .u-sp-only {
+            display: none !important;
+    }
+}
+
+
+/*   ハンバーガー */
+.header__btn{
+    display: block;
+    width: 20px;
+    cursor: pointer;
+}
+
+.header__logo--b {
+    display: none;
+
+}
+
+.header.is-white .header__logo--b {
+    display: block;
+
+}
+
+.header.is-white .header__logo--w {
+    display: none;
+    
+}
+.header__btn--b{
+    display: none;
+}
+
+.fixed-right-pc .nav__insta__btn .insta__btn--b {
+    display: block;
+}
+
+.fixed-right-pc .nav__insta__btn .insta__btn--w {
+    display: none;
+}
+
+.header.is-white  .header__btn--b{
+    display: block;
+}
+
+.header.is-white .header__btn--w{
+    display: none;
+}
+
+
+
+
+/*ナビ全体（初期は非表示） */
+#g-nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* 最初は画面外 */
+    width: 60%;
+    height: 100vh; /* 画面いっぱい */
+    display: flex; /* 追加 */
+    flex-direction: column; /* 追加：縦並びにする */
+    background: #000; /* 追加：背景色をコンテナ側に移動 */
+    opacity: 0.8; /* 追加：不透明度をコンテナ側に移動 */
+    padding: 125px 0 60px 60px; /* 追加：パディングをコンテナ側に移動 */
+    transition: 0.5s;
+    z-index: 100;
+}
+
+/* 開いたとき */
+#g-nav.open {
+    right: 0;
+}
+
+
+/* 右のメニュー部分*/
+.nav__list {
+    color: #fff;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+
+
+
+/*メニュー文字*/
+.nav__item a {
+    font-family: "Cormorant Garamond", serif;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    font-size: 2.4rem;
+    letter-spacing: 0.04em;
+}
+
+
+/* ×ボタン */
+.nav__header {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10; /* メニューリストより前面に配置 */
+}
+
+.nav__btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+}
+
+.nav__btn img {
+    width: 20px;
+}
+
+.nav__insta__btn{
+    display: block;
+    width: 44px;
+    cursor: pointer;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+
+
+/* ===============
+main
+================ */
+main {
+    overflow: hidden;
+
+    @media screen and (min-width:768px) { 
+        max-width: 375px;
+        margin-inline: auto;
+    }
+}
+.section{
+    padding: 56px 24px;
+    background-color: #F7F7F7;
+    text-align: center;
+}
+
+/* 丸いボタン Reservation */
+
+/* 外枠のサイズ指定 */
+.reservation-round-btn-wrapper {
+  position: fixed; /* 画面に対して固定配置 */
+  bottom: 24px;   /* 画面下から24px */
+  right: 24px;    /* 画面右から24px */
+  width: 130px;   /* 直径160px */
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;   /* 他の要素より前面に表示 */
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* デフォルト（スマホ）ではPCサイドバー用のボタンを隠す */
+.reservation-round-btn-wrapper--pc {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    /* PC時：スマホ用の固定ボタンを非表示にする */
+    .reservation-round-btn-wrapper--sp {
+        display: none;
+    }
+
+    /* PC時：サイドバー内のボタンを表示・配置調整 */
+    .reservation-round-btn-wrapper--pc {
+        display: flex;
+        position: static;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .reservation-round-btn-wrapper--sp.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+}
+
+.reservation-round-btn {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 円弧テキストのコンテナを回す */
+.reservation-round-arc-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotate-anime 10s linear infinite;
+  font-family: "Cormorant Garamond", serif;
+}
+
+@keyframes rotate-anime {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* JSで生成される1文字ずつのスタイル */
+.reservation-round-arc-text span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform-origin: center 65px; /* 半径に調整 */
+    display: inline-block;
+    font-size: 1.4rem;
+    letter-spacing: 0.23em;
+    font-weight: 400;
+    color: #494949;
+
+    /* ↓ これを追加：スペースを正しく表示させる */
+    white-space: pre;
+}
+
+/* 真ん中の文字 */
+.reservation-round-center-text {
+    position: absolute;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    z-index: 2;
+
+    /* ホバー時の背景用スタイル */
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.reservation-round-btn:hover .reservation-round-center-text {
+    background-color: rgb(195, 193, 193, 0.5); /* 背景変化 */
+    color: #fff;           
+}
+
+
+/* ボタン全体のスタイル */
+.c-btn-more {
+    display: inline-flex;    /* テキストと画像を横並びにする */
+    align-items: center;    /* 上下中央揃え */
+    justify-content: space-between; 
+    text-decoration: none;  /* リンクの下線を消す */
+    color: #000;            /* 文字色（デザインに合わせて調整してください） */
+    width: auto;            
+    width: 100%;
+    max-width: 251px;      
+    padding-bottom: 4px;    /* 下線と文字の間の余白 */
+    border-bottom: 1px solid #000; /* 下のライン */
+    margin: 37px 0 0;
+    transition: opacity 0.3s; /* ホバー時のアニメーション */
+}
+
+.c-btn-more:hover {
+    opacity: 0.6;
+}
+
+.c-btn-more span {
+    font-size: 20px;        
+    font-family: Cormorant Garamond, serif;
+    letter-spacing: 0.07em;
+}
+
+/* 矢印アイコンのサイズ調整 */
+.c-btn-more img {
+    width: 28px;
+    height: auto;
+}
+
+
+.breadcrumb{
+    display: flex;
+    gap: .4em;
+    margin-bottom: 7px;
+    margin-left: 24px;
+    font-family: Cormorant Garamond, serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.04em;
+    background-color: #F7F7F7;
+    cursor: pointer;
+}
+
+.breadcrumb span{
+    display: flex;
+    gap: .4em;
+}
+
+.breadcrumb span:before{
+    content: '>';
+}
+
+/* ===============
+    footer
+================ */
+.footer {
+    @media screen and (min-width:768px) { 
+        max-width: 375px;
+        margin-inline: auto;
+    }
+}
+.footer-inner{
+    padding: 56px 24px 20px;
+    background-color: #494949;
+    text-align: center;
+}
+
+.footer-inner img{
+    width: 150px;
+}
+
+/* メニューリストのレイアウト（3カラム） */
+.footer__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3列に分割 */
+    gap: 20px 20px; /* 上下20px、左右10pxの隙間 */
+    max-width: 500px; /* メニュー全体の横幅を制限 */
+    margin: 40px auto; 
+    padding: 0;
+    list-style: none;
+}
+
+/* メニューのリンク */
+.footer__item a {
+    font-family: Cormorant Garamond, serif;
+    color: #fff;
+    text-decoration: none;
+    font-size: 2.0rem;
+    letter-spacing: 0.07em;
+    display: block;
+}
+
+
+/* コピーライト */
+.copy {
+    font-family: Cormorant Garamond, serif;
+    color: #fff;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+}
+
+
+/* ============================================
+   index
+============================================ */
+
+
+/* ===============
+main
+================ */
+.article-header {
+  position: relative; /* mainTopicsの基準点にする */
+  width: 100%;
+  height: auto; /* 高さを固定せず、画像に合わせる */
+}
+
+.mainImg img{
+    width: 100%;
+    display: block;
+}
+
+.mainTopics{
+    position: absolute;
+    bottom: 56px;
+    left: 24px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
+    opacity: 0.8;
+}
+
+.mainTopics-title{
+    font-family: "Cormorant Garamond", serif;
+    font-size: 3.6rem;
+    letter-spacing: 0.06em; 
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ===============
+    top__about
+================ */
+.section--top__about{
+    text-align: left;
+}
+
+.top__about-inner{
+    max-width: 100%;
+    margin: 0 auto;
+    background: url(../images/text_top-about_bg-01.svg) no-repeat 0% 54px / 25px 356px;
+}
+
+.top__about-title{
+    font-size: 1.2rem;
+    margin-top: 27px;
+}
+
+.top__about-topic{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.top__about-gallery-01{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* 子要素を右に寄せる */
+    gap: 84px;
+    list-style: none;
+    padding: 0;
+}
+
+.top__about-gallery__item-01{
+    width: 295px;
+    height: 197px;
+    margin-right: -24px; /* 親要素のpadding 24px分を右側に突き抜けさせる */
+}
+
+.top__about-gallery__item-02{
+    width: 208px;
+    height: 277px;
+    margin-right: 81px;
+    position: relative;
+}
+
+.top__about-gallery__item-02 img{
+    position: relative;
+}
+
+.top__about-gallery__item-02:before{
+    content: '';
+    display: block;
+    background: #EDE9E4;
+    width: 235px;
+    height: 319px;
+    position: absolute;
+    left: 78px;
+    top: -29px;
+    filter: blur(10px);
+}
+
+.top__about-gallery-02{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* 子要素を右に寄せる */
+    gap: 32px;
+    list-style: none;
+    padding: 0;
+    margin-top: 28px;
+}
+
+.top__about-gallery__item-03{
+    width: 287px;
+    height: 191px;
+    position: relative;
+    z-index: 1;
+}
+
+.top__about-gallery__item-04{
+    width: 219px;
+    height: 327px;
+    align-self: flex-start; /* 親のflex-endを無視して左寄せにする */
+    margin-left: -24px;    /* 左側のpadding 24px分を外に出す */
+    position: relative; /* 子要素の基準点になる */
+    display: inline-block; /* 画像のサイズに合わせる */
+}
+
+.top__about-gallery__item-04:before{
+    content: '';
+    display: block;
+    background: #EDE9E4;
+    width: 110px;
+    height: 175px;
+    position: absolute;
+    left: 0px;
+    top: -175px;
+    filter: blur(10px);
+}
+
+.top__about-gallery__message {
+  position: absolute; /* 親要素に対して絶対配置 */
+  top: 33px;           
+  left: 124px;       /* 右側に少しはみ出す、または内側に寄せる調整 */
+  z-index: 10;        /* 画像より手前に出す */
+}
+
+.top__about-gallery__message p {
+  color: #A2A1A1;        /* 文字色 */
+  font-family: 'Cormorant Garamond', serif; /* セリフ体/イタリック */
+  font-weight: 500;      /* medium は weight で指定 */
+  font-style: italic;    /* 斜体は個別に指定 */
+  font-size: 2.5rem;
+  letter-spacing: 0.06em;
+  line-height: calc(30/25);
+  text-align: left;
+  white-space: nowrap; /* 改行位置を自分でコントロールする場合 */
+}
+
+.top__about-gallery__message-row:nth-child(2),.top__about-gallery__message-row:nth-child(4) {
+position: relative;
+left: 32px;
+}
+
+.top__about-gallery__message-row:nth-child(3) {
+position: relative;
+left: 11px;
+}
+
+.top__about-button {
+    text-align: center;
+}
+
+
+/* ===============
+    top__menu
+================ */
+.section--top__menu{
+    background-color: #F2F0E8;
+    text-align: center;
+    overflow: hidden;
+}
+
+.section--top__menu .section-title-font-en{
+    color: #989696;
+}
+
+.top__menu-gallery{
+    /* display: flex;
+    margin-top: 50px;
+    gap: 38px;
+    overflow-x: auto; 
+    white-space: nowrap;  */
+}
+
+.top__menu-gallery__item{
+    /* flex: 0 0 80%; 
+    max-width: 300px; 
+    height: auto;
+    overflow: hidden; */
+}
+
+.top_menu-gallery__item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.top__menu-topic{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.top__menu-topic-txt-01{
+    font-size: 1.8rem;
+}
+
+.top__menu-swiper {
+    width: 221px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+/* ===============
+    top__access
+================ */
+
+.section--top__access .section-title-font-en{
+    color: #989696;
+}
+
+
+.top__access-topic{
+    margin-top: 45px;
+}
+
+.p-top-access__link-banner{
+  position: relative; /* 子要素（文字）の基準点になります */
+  display: block;    /* リンクの範囲を広げます */
+  line-height: 0;    /* 画像の下の謎の隙間を消します */
+  margin-left: -24px;  /* 親のpadding 24pxを打ち消す */
+  margin-right: -24px;
+  margin-top: 45px;
+  overflow: hidden;
+}
+
+.p-top-access__link-banner:hover img{
+  scale: 1.2;
+}
+
+.p-top-access__link-motomachi{
+    margin-top: 0;
+}
+
+.p-top-access__link-banner img {
+    width: 100%;     /* 画像を横幅いっぱいまで引き伸ばす */
+    transition: scale 0.3s;
+}
+
+.p-top-access__link-banner span{
+    position: absolute; 
+    top: 50%;          /* 上から50%の位置へ */
+    left: 50%;         /* 左から50%の位置へ */
+    transform: translate(-50%, -50%); /* 自分の大きさの半分戻して、中央に合わせる */
+    
+    display: flex;      /* 高さを有効にし、中の文字を中央寄せにする */
+    align-items: center;
+    justify-content: center;
+    width: 142px;   
+    height: 29px;      
+    padding: 5px 20px;  
+    border: 1px solid #fff; 
+
+    font-family: Cormorant Garamond, serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.23em;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap; /* 改行されないようにする */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+/* ===============
+    top__reservation
+================ */
+
+.section--top__reservation .section-title-font-en{
+    color: #989696;
+}
+
+.top__reservation-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vertical-line {
+    width: 1px;
+    height: 61px;      /* 棒の長さ */
+    background-color: #000;
+    margin: 4px auto -10px; /* 中央配置して下に余白 */
+}
+
+.btn-link-beforeBooking {
+    display: flex;      
+    align-items: center;
+    justify-content: center;
+    width: 327px;
+    height: 50px;
+    border: 1px solid #000; 
+
+}
+
+.btn-link-beforeBooking span{
+font-size: 14px;
+font-weight: 400;
+line-height: 1.7;
+letter-spacing: 0.02em;
+text-align: center;
+}
+
+
+/* ============================================
+   about
+============================================ */
+
+
+/* ===============
+concept
+================ */
+.section--consept {
+    padding-inline: 0;
+    padding-top: unset;
+}
+.about-mainImg{
+    width: 100%;
+    height: auto;
+    /* margin-left: -24px; 
+    margin-right: -24px;
+    margin-top: -56px; */
+
+}
+.consept-inner {
+    max-width: calc(100% - 24px * 2);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section--consept .section-title-font-en{
+    color: #989696;
+}
+
+.concept-topic{
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 50px;
+}
+
+.concept-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: calc((100% - 18px) / 2);
+}
+
+.concept-title{
+    font-family: Cormorant Garamond, serif;
+    font-size: 4rem;
+    letter-spacing: 0.06em
+}
+
+.cross{
+    font-size: 1.8rem;
+    width: 18px;
+    flex-shrink: 0;
+    padding-top: 22px;
+}
+
+.concept-line {
+    width: 1px;
+    height: 11px;    
+    background-color: #000;
+}
+
+.concept-name{
+    margin-top: 75px;
+}
+.about-logo-small{
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+}
+
+.about-logo-black{
+    width: 158px;
+    margin: 0 auto;
+}
+
+.concept-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 41px;
+}
+
+.concept-text{
+    line-height: 180%;
+}
+
+.concept-text-big{
+    font-size: 1.6rem;
+    display: inline-block;
+    margin: -15px 0; /* 親の gap: 30px から 15px 分を差し引いて、結果的に 15px にします */
+}
+
+/* ===============
+reason
+================ */
+
+#reason {
+  /* グラデーション画像を設定 */
+  /* background-image: url("assets/images/bg-reason.jpg");
+  background-size: cover; */
+  /* background-position: center;
+  background-repeat: no-repeat; */
+  background: linear-gradient(
+  0deg,
+  #F7F7F7 0%,
+  #DBD9D9 6%,
+  #D3D3D3 16%,
+  #C3C2C2 50%,
+  #C1BFBF 77%,
+  #DBD9D9 89%,
+  #F7F7F7 100%
+);
+padding-top: 164px;
+}
+
+.reason-inner{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.reason-lead {
+  font-size: 1.6rem;
+  line-height: 175%;
+  color: #A4A094;
+  text-align: left;
+  letter-spacing: 0.02em;
+  padding-left: 8px;
+  position: relative;
+}
+
+.reason-lead:before{
+    content: '';
+    display: block;
+    background: url(../images/obj_reason-lead-01.svg) no-repeat 50% 50% / contain;
+    width: 296px;
+    height: 296px;
+    position: absolute;
+    left: -44px;
+    top: -106px;
+}
+
+.reason-lead span {
+    position: relative;
+}
+
+.reason-lead span:nth-child(2){
+    position: relative;
+    left: 34px;
+}
+
+.reason-lead strong {
+   font-size: 2rem;
+   font-weight: 400;
+}
+.reason-img-wrap {
+    display: grid;
+    grid-template-columns: 187fr 172fr;
+    gap: 15px;
+    margin-left: -24px;
+    width: calc(100% + 24px * 2);
+    margin-top: 11px;
+    position: relative;
+}
+.reason-img--01{
+  /* position: absolute;
+  top: 276px;
+  right: -54px; */
+  /* width: auto; */
+  aspect-ratio: 187/274;
+  margin-top: 81px;
+
+}
+.reason-img--02{
+    /* position: absolute;
+    top: 357px;
+    left: -42px; */
+    aspect-ratio: 171/272;
+    /* min-width: 172px; */
+    margin-bottom: 83px;
+    
+}
+
+.reason-img--01 img,.reason-img--02 img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* リスト部分（こだわりポイント） */
+.reason-list {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    list-style: none;                /* 点を消す */
+    text-align: left;                /* タイトルや本文は左揃えにする場合 */
+    gap: 80px;
+    margin-top: 66px;
+}
+
+
+.reason-item .en {
+    font-family: Cormorant Garamond, serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+}
+
+.reason-title {
+  font-size: 2.4rem;
+}
+
+.reason-text {
+    display: inline-flex;
+    margin-top: 30px;
+    font-size: 1.8rem;
+    line-height: 1.8;
+}
+
+.reason-text-small{
+    display: flex;
+    margin-top: 20px;
+}
+
+/* ===============
+reason
+================ */
+.section--owner .section-title-font-en{
+    color: #989696;
+}
+
+.owner-img{
+    margin-top: 35px;
+}
+
+.owner-name{
+    font-family: Cormorant Garamond, serif;
+    font-size: 2.4rem;
+    letter-spacing: 0.07em;
+    display: inline-flex;
+    margin-top: 25px;
+}
+
+.owner-icon-instagram {
+    display: block;
+    margin-top: 10px;
+}
+
+.owner-line{
+    width: 100%;
+    height: 1px;    
+    background-color: #C3C1C1;
+    margin-top: 11px;
+}
+
+.owner-text{
+    display: inline-flex;
+    margin-top: 32px;
+}
+
+.owner-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 34px;
+}
+
+.owner-item-title{
+    font-size: 1.6rem;
+    text-decoration: underline 1px solid #000;
+}
+
+/* slider */
+.swiper-pagination-bullet {
+    width: 15px;
+    height: 15px;
+    background: #FFFFFF;
+    opacity: 1;
+}
+.swiper-pagination-bullet-active {
+    background: #C3C1C1;
+    opacity: 1;
+}
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 10px;
+}
+.swiper {
+    overflow: visible;
+}
+
+/* ============================================
+   reservation
+============================================ */
+
+
+/* ===============
+reservation-policy
+================ */
+.section--reservation-fv {
+    /* padding-inline: 0; */
+    padding-top: 129px;
+    background: url(../images/img_reservation-main-sp.jpg) no-repeat 50% 0% / cover;
+}
+
+.reservation-mainImg{
+    width: 100%;
+    height: auto;
+}
+
+.reservation-fv-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 34px;
+    margin-top: 45px;
+}
+
+.reservation-fv-text {
+    font-weight: 400;
+}
+
+.resevation-fv-button {
+width: 100%;
+}
+
+.resevation-fv-button a {
+margin-top: 0;
+}
+
+/* ===============
+reservation-policy
+================ */
+.section--reservation-policy {
+    padding-top: 56px;
+}
+
+
+.reservation-title p{
+    font-size: 1.6rem;
+}
+
+.reservation-policy-inner .c-btn-more{
+    margin-top: 0;
+}
+
+.reservation-policy-lead{
+    border: 1px solid #C3C1C1;
+    padding: 15px 0;
+}
+
+.reservation-policy-item{
+    margin-top: 50px;
+}
+
+.reservation-policy-q-wrap {
+    cursor: pointer;
+}
+
+.reservation-policy-q-wrap img {
+    transition: scale 0.3s;
+}
+
+.reservation-policy-q-wrap.is-open img {
+    scale: -1 -1;
+}
+
+.reservation-policy-box{
+    display: flex;
+    justify-content: space-between;
+}
+.reservation-policy-q{
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+}
+.reservation-policy-line{
+    width: 100%;
+    height: 1px;    
+    background-color: #C3C1C1;
+    margin-top: 10px;
+}
+
+.reservation-policy-a {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 30px;
+    display: none;
+}
+
+.reservation-policy-a p{
+    text-align: left;
+}
+
+.reservation-policy-a span{
+    text-decoration: underline 1px solid #000;
+}
+/* ===============
+reservation-method
+================ */
+
+.section--reservation-method .section-title-font-en{
+    color: #989696;
+}
+
+.reservation-shopname{
+    font-family: Cormorant Garamond, serif;
+    font-size: 2.4rem;
+    letter-spacing: 0.07em;
+}
+
+.reservation-shopname-jp{
+    font-size: 1.4rem;
+}
+
+.c-btn-resevertion-himeji, 
+.c-btn-reservation-motomachi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reservation-method-btn-box {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    margin-top: 40px;
+}
+
+.reservation-method-btn-box-line{
+    width: 1px;
+    height: auto;
+    background-color: #C3C1C1;
+}
+
+.reservation-method-btn-box img{
+    margin-top: 10px;
+}
+
+.reservation-method-box{
+    align-items: center;
+    margin-top: 70px;
+}
+.reservation-method-title{
+    display: flex;
+    text-align: left;
+    align-items: center;
+    gap: 16px;
+    margin-top: 10px;
+
+}
+.reservation-method-shop{
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.reservation-method-shop-line{
+    width: 100%;
+    height: 1px;    
+    background-color: #C3C1C1;
+}
+
+
+.reservation-method-desc-box {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.reservation-method-img{
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 37px auto 53px;
+}
+
+.reservation-method-text-box{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+}
+
+.reservation-method-notice {
+    margin-top: 10px;
+}
+
+.border-black{
+    text-decoration: underline 1px solid #000;
+    padding-left: 1em;
+}
+
+.reservation-method-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 1px solid #C3C1C1;
+  padding: 6px 35px 6px 24px;
+  width: 70%;
+  max-width: 280px;
+  margin: 50px auto 0;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.reservation-method-link span{
+    font-family: Cormorant Garamond, serif;
+    font-size: 2rem;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+}
+
+.reservation-method-link:hover {
+  opacity: 0.7;
+}
+
+.reservation-method-link img {
+  width: 43px; 
+}
+
+.reservation-method-desc{
+    margin-top: 20px;
+}
+
+
+/* ============================================
+   menu
+============================================ */
+
+/* ===============
+reservation-method
+================ */
+
+
+.menu-mainImg{
+    position: relative;
+    width: 100%;
+    height: auto;
+    
+}
+    @media screen and (max-width: 767px) {
+    .menu-mainImg{
+        margin-top: 70px;
+    }
+    }
+    
+
+
+.menu-mainImg img{
+    width: 100%;
+    display: block;
+}
+
+.menu-mainImg .section-title-font-en {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 3.2rem;
+    letter-spacing: 0.09em;
+    font-weight: 400;
+}
+
+.section--menu{
+    background-color: #EDE9DF;
+}
+
+.menu-container{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.menu-title{
+    font-family: Cormorant Garamond, serif;
+    font-size: 3.2rem;
+    letter-spacing: 0.06em;
+    font-weight: 400;
+}
+
+.menu-item{
+    padding-bottom: 20px;
+}
+.menu-text{
+    font-size: 1.6rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.menu-text span{
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+}
+
+.menu-price-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.menu-price-item p{
+    white-space: nowrap;
+}
+.price{
+    font-size: 1.6rem;
+}
+
+.menu-item-line {
+    width: 100%;
+    height: 1px;
+    background-color: #C3C1C1;
+}
+
+.menu-title-desc{
+    font-size: 1.6rem;
+    line-height: 1.4;
+    margin: 10px auto 20px;
+    text-align: center;
+}
+
+/* ===============
+intagram
+================ */
+.media-inner{
+    display: flex;
+    flex-direction: column;
+    gap:50px
+}
+
+.section--media{
+    padding-inline: 0;
+}
+
+.section--media .section-title-font-en{
+    color: #989696;
+}
+
+.media-swiper {
+    width: 100%;
+    margin-top: 30px;
+    overflow: hidden; /* Ensure slides don't cause horizontal scroll on the page */
+}
+
+.media-swiper .swiper-slide {
+    width: 250px; /* Adjust the width of each slide as needed */
+    height: auto;
+}
+
+.media-swiper img {
+    width: 100%;
+    display: block;
+}
+
+.media-info-title{
+    font-family: Cormorant Garamond, serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.14em;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.media-info-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    max-width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.media-info-link:nth-child(n+2) {
+   margin-top: 22px;
+}
+
+.media-info-account{
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+    margin-top: -8px;
+}
+
+.media-info-account-line {
+    width: 100%;
+    height: 0.5px;
+    background-color: #000;
+}
+
+.media-info-account-name{
+    font-family: Cormorant Garamond, serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+}
+
+.media-info-btn{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #C3C1C1;
+    padding: 6px 30px 6px 18px;
+    width: 100%;
+}
+.media-info-btn-02{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #C3C1C1;
+    padding: 6px 30px 6px 18px;
+    /* margin-top: 22px; */
+    width: 100%;
+}
+
+/* ============================================
+   access
+============================================ */
+
+/* ===============
+access
+================ */
+.section--access {
+    padding-top: 0px;
+}
+    @media screen and (max-width: 767px) {
+        .section--access{
+            padding-top: 70px;
+        }
+        }
+
+.access-inner {
+    padding-top: 56px; /* タイトルのマージンの代わりにパディングで余白を確保 */
+}
+
+.section--access .section-title-font-en{
+    color: #989696;
+}
+
+.access-container{
+    text-align: left;
+    margin-top: 56px;
+}
+
+.access-name-sb{
+   font-size: 1.6rem;
+    color: #989696;
+}
+
+.access-name-box{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.access-name{
+    font-size: 2rem;
+}
+
+.access-info{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+    text-align: left;
+}
+
+.access-item{
+
+}
+
+.access-item span{
+    text-decoration: underline 1px solid #000;
+}
+
+.access-item h3{
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+.access-item-line{
+    width: 100%;
+    height: 1px;    
+    background-color: #C3C1C1;
+    margin: 6px 0;
+}
+.access-item-text-margin{
+    margin-top: 1rem;
+}
+
+.access-img-sb{
+    display: flex;
+    gap: 11px;
+    margin-top: 40px;
+}
+
+/* ============================================
+   qiestion
+============================================ */
+
+/* ===============
+Q&A
+================ */
+
+.section--question{
+    padding: 0px 24px 56px;
+}
+    @media screen and (max-width: 767px) {
+    .section--question{
+        padding-top: 70px;
+    }
+    }
+    
+
+.section--question .section-title-font-en{
+    color: #989696;
+    margin: 56px auto 16px;
+}
+
+.question-title{
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+    margin: 40px auto 40px;
+}
+
+.question-item{
+margin-top: 20px;
+}
+
+.question-q{
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer; /* クリックできることを示す */
+    
+}
+.question-mark{
+    font-family: Cormorant Garamond, serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em
+}
+
+.question-q-txt{
+    width: 100%;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+    text-align: left;
+    margin-top: 8px;
+    margin-left: 6px;
+}
+
+.question-q img{
+    width: 14px;
+    height: 7px;
+    margin-top: 18px;
+    transition: transform 0.3s; /* 回転を滑らかにする */
+}
+
+.question-item.is-open .question-q img {
+    scale: -1 -1;
+}
+
+.question-a{
+    display: none; /* 初期状態を非表示にする */
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 20px;
+}
+.question-a-txt{
+    display: inline-flex;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    text-align: left;
+    margin-top: 8px;
+    margin-left: 6px;
+}
+
+.question-item-line{
+    width: 100%;
+    height: 1px;
+    background-color: #C3C1C1;
+    margin-top: 20px;
+}
+
+.question-container-lead{
+    font-size: 1.6rem;
+    line-height: 0.05em;
+    line-height: 1.7;
+    text-align: left;
+    margin-top: 50px;
+}
+
+
+
+/* スライダー全体 */
+.slider-wrapper {
+  display: flex; /* スライドのグループを横並び */
+  overflow: hidden; /* はみ出たスライドを隠す */
+}
+/* スライド3枚のグループ */
+.slider {
+  animation: scroll-left 20s infinite linear .5s both;
+  display: flex; /* スライド3枚を横並び */
+}
+/* スライド */
+.slide {
+    height: 56vw;
+    max-height: 241px;
+    aspect-ratio: 298 / 364;
+}
+
+/* スライドの画像 */
+.slide img {
+  display: block;
+  width: 100%;
+}
+/* CSSアニメーション */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

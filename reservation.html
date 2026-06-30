@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- favicon apple-touch-icon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="904×904" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="assets/images/android-chrome-256x256.png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="アイサロンのホームページ">
+    <meta name="robots" content="noindex">
+    <title>Reservation | NUURA</title>
+
+    <!-- web font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/destyle.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div id="container" class="container">
+        <header class="header is-white  is-transparent u-sp-only">
+            <h1 class="header__topic">
+                <a href="index.html">
+                    <img class="header__logo--b" src="assets/images/logo.png" alt="NUURA">
+                </a>
+            </h1>
+            <nav class="nav" id="g-nav">
+                <div class="nav__header">
+                    <button type="button" class="nav__btn" aria-label="メニューを閉じる">
+                        <img src="assets/images/btn-header-close.svg" alt="">
+                    </button>
+                </div>
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html">Home</a></li>
+                    <li class="nav__item"><a href="about.html">About</a></li>
+                    <li class="nav__item"><a href="menu.html">Menu</a></li>
+                    <li class="nav__item"><a href="question.html">Q&A</a></li>
+                    <li class="nav__item"><a href="access.html">Access</a></li>
+                    <li class="nav__item"><a href="reservation.html">Reservation</a></li>
+                </ul>
+                <a href="https://www.instagram.com/nuura__beauty/" class="nav__insta__btn" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/images/btn-insta-w.svg" alt="">
+                </a>
+            </nav>
+            <!-- .header__btn  -->
+            <div class="header__list">
+                <a href="https://www.instagram.com/nuura__beauty/" class="insta__btn" target="_blank" rel="noopener noreferrer">
+                    <img class="insta__btn--b" src="assets/images/btn-insta-b.svg" alt="">
+                </a>
+                <button type="button" class="header__btn" aria-controls="g-nav" aria-expanded="false" aria-label="メニューを開く">
+                    <img class="header__btn--b" src="assets/images/btn-header-menu-b.svg" alt="">
+                </button>
+            </div>
+        </header>
+
+        <div class="fixed-left-pc">
+            <a href="index.html" class="fixed-left-pc__logo">
+                <img src="assets/images/logo-w.png" alt="NUURA">
+            </a>
+        </div>
+
+        <div class="fixed-right-pc">
+            <nav class="header__nav-pc">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html">Home</a></li>
+                    <li class="nav__item"><a href="about.html">About</a></li>
+                    <li class="nav__item"><a href="menu.html">Menu</a></li>
+                    <li class="nav__item"><a href="question.html">Q&A</a></li>
+                    <li class="nav__item"><a href="access.html">Access</a></li>
+                </ul>
+                <a href="https://www.instagram.com/nuura__beauty/" class="nav__insta__btn" target="_blank" rel="noopener noreferrer">
+                    <img class="insta__btn--b" src="assets/images/btn-insta-b.svg" alt="">
+                </a>
+            </nav>
+            <div class="reservation-round-btn-wrapper reservation-round-btn-wrapper--pc">
+                <a href="reservation.html#reservation-method" class="reservation-round-btn">
+                    <div class="reservation-round-arc-text js-arcText"><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span></div>
+                    <span class="reservation-round-center-text">Reservation</span>
+                </a>
+            </div>
+        </div>
+        
+        <main class="reservation">
+            <!-- 予約前の確認セクション -->
+            <section id="reservation-policy" class="section section--reservation-fv">
+                <div class="reservation-round-btn-wrapper reservation-round-btn-wrapper--sp">
+                    <a href="reservation.html#reservation-method" class="reservation-round-btn">
+                        <div class="reservation-round-arc-text js-arcText"><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span><span>c</span><span>l</span><span>i</span><span>c</span><span>k</span><span> </span><span>h</span><span>e</span><span>r</span><span>e</span><span> </span><span> </span></div>
+                        <span class="reservation-round-center-text">Reservation</span>
+                    </a>
+                </div>
+                <div class="reservation-fv-inner">
+                    <div class="reservation-title">
+                        <h1 class="section-title-font-en">Before Booking</h1>
+                        <p>ご予約前にご確認ください</p>
+                    </div>
+                    <div class="reservation-fv-box">
+                        <p class="reservation-fv-text">
+                            「NUURA」は、完全予約制の<br>
+                            マンツーマンサロンです。<br>
+                            １日にご案内できるお客様の人数が<br>
+                            限られているため、<br>
+                            お一人おひとりのお客様のお時間を大切にし、<br>
+                            ご予約枠を確保してお待ちしております。
+                        </p>
+                        <p class="reservation-fv-text">
+                            現在、「NUURA」の他に、<br>
+                            シェアサロンの一室でも施術を行っています。<br>
+                            ２拠点での営業となりますので、<br>
+                            それぞれの営業日や店舗詳細につきましては、<br>
+                            こちらからご確認ください。
+                        </p>
+                        <div class="resevation-fv-button">
+                            <a href="access.html" class="c-btn-more">
+                                <span>Access</span>
+                                <img src="assets/images/btn-more.svg" alt="">
+                            </a>
+                        </div>
+
+                    </div>
+            </section>
+
+            <section id="reservation-policy" class="section section--reservation-policy">
+                <div class="reservation-policy-inner">
+                    
+                    <div class="reservation-policy-lead">
+                        <p class="reservation-policy-text">
+                            すべてのお客様に<br>
+                            気持ちよくご利用いただくため、<br>
+                            下記のキャンセルポリシーへの<br>
+                            ご理解とご協力をお願いいたします。<br>
+                        </p>
+                    </div>
+
+                    <div class="reservation-policy-item">
+                        <div class="reservation-policy-q-wrap">
+                            <div class="reservation-policy-box">
+                                <h2 class="reservation-policy-q">キャンセル・ご変更について</h2>
+                                <img src="assets/images/v-btn-more.svg" alt="">
+                            </div>
+                            <div class="reservation-policy-line"></div>
+                        </div>
+                        <div class="reservation-policy-a">
+                            <p>
+                               ご予約のキャンセル・日時変更は
+                               <span>前日までに</span>
+                               公式LINEにてご連絡をお願いいたします。 
+                            </p>
+                            <p>
+                                当日のキャンセル・変更につきましては下記のキャンセル料を頂戴しております。
+                            </p>
+                            <p>
+                                ・当日のキャンセル/日時変更<br>
+                                　施術料金の50%
+                            </p>
+                            <p>
+                                ・無断キャンセル<br>
+                                　施術料金の100%
+                            </p>
+                            <p>
+                                キャンセル料は、次回来店時、またはお振込みにてお支払いをお願いしております。
+                            </p>
+                            <p>
+                                なお、当日キャンセル・遅刻・無断キャンセルが複数回続く場合は、今後のご予約をお断りさせていただく場合がございます。
+                            </p>
+                        </div>
+                    </div>
+
+                    
+                    <div class="reservation-policy-item">
+                        <div class="reservation-policy-q-wrap">
+                            <div class="reservation-policy-box">
+                                <h2 class="reservation-policy-q">ご来店時間について</h2>
+                                <img src="assets/images/v-btn-more.svg" alt="">
+                            </div>
+                            <div class="reservation-policy-line"></div>
+                        </div>
+                        <div class="reservation-policy-a">
+                            <p>
+                                マンツーマンでの施術となるため、お客様同士が重ならないようご予約時間〈5分前〜ちょうど〉のご来店にご協力をお願いいたします。
+                                <span>10分以上早いご来店はご遠慮ください。</span>
+                            </p>
+                            <p>
+                                ご予約時間に遅れる場合は、分かり次第お早めにLINEにてご連絡ををお願いいたします。<br>
+                                ご予約時間を過ぎてのご来店の場合、次のお客様のご予約状況により
+                            </p>
+                            <p>
+                                ・施術時間の短縮<br>
+                                ・メニュー内容の変更<br>
+                                ・施術をお断りする場合
+                            </p>
+                            <p>がございます。</p>
+                            <p>
+                                また、10分を超えてもご来店がない場合やご連絡がない場合は、キャンセル扱いとさせていただく場合がございます。
+                            </p>
+                            <p>
+                                なお、施術時間を短縮した場合でもご予約時のメニュー料金を頂戴いたします。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="reservation-policy-item">
+                        <div class="reservation-policy-q-wrap">
+                            <div class="reservation-policy-box">
+                                <h2 class="reservation-policy-q">交通機関の遅延について</h2>
+                                <img src="assets/images/v-btn-more.svg" alt="">
+                            </div>
+                            <div class="reservation-policy-line"></div>
+                        </div>
+                        <div class="reservation-policy-a">
+                            <p>
+                                悪天候などにより、交通機関の遅延・運休が発生した場合は、その旨をLINEにてご連絡ください。
+                            </p>
+                            <p>
+                                状況を考慮し、柔軟に対応させていただきます。                            
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="reservation-policy-item">
+                        <div class="reservation-policy-q-wrap">
+                            <div class="reservation-policy-box">
+                                <h2 class="reservation-policy-q"> NUURAについて</h2>
+                                <img src="assets/images/v-btn-more.svg" alt="">
+                            </div>
+                            <div class="reservation-policy-line"></div>
+                        </div>
+                        <div class="reservation-policy-a">
+                            <p>
+                                NUURAは、自宅サロンのため詳しい住所はご予約確定後にお伝えさせていただきます。                                              
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 予約方法セクション -->
+            <section id="reservation-method" class="section section--reservation-method">
+                <div class="reservation-method-inner">
+                    <h2 class="section-title-font-en">
+                        Reservation
+                    </h2>
+                    <div class="reservation-method-btn-box">
+                        <a href="reservation.html#himeji" class="c-btn-resevertion-himeji">
+                            <span class="reservation-shopname">NUURA</span>
+                            <span class="reservation-shopname-jp">姫路店</span>
+                            <img src="assets/images/v-btn-more-gray.svg" alt="">
+                        </a>
+                        <div class="reservation-method-btn-box-line"></div>
+                        <a href="reservation.html#motomachi" class="c-btn-reservation-motomachi">
+                            <span class="reservation-shopname">atelier...m</span>
+                            <span class="reservation-shopname-jp">元町店</span>
+                            <img src="assets/images/v-btn-more-gray.svg" alt="">
+                        </a>
+                    </div>
+                    <div class="reservation-method-container">
+                        <div class="reservation-method-box" id="himeji">
+                            <img src="assets/images/img-reservation-himeji.jpg" alt="">
+
+                            <div class="reservation-method-title">
+                                <h3 class="reservation-method-shop">NUURA　姫路店</h3>
+                                <div class="reservation-method-shop-line"></div>
+                            </div>
+
+                            <div class="reservation-method-desc-box">
+                                <p>
+                                    公式LINEに下記の内容をお送りください。
+                                </p>
+                                <img src="assets/images/img-reservation-method.jpg" alt="">
+                                <div class="reservation-method-text-box">
+                                    <p>1.お名前（フリガナ）<br>
+                                        <span class="border-black">ご新規様は「新規」とご記載ください。</span><br>
+                                    </p>
+                                    <p>2.電話番号</p>
+                                    <p>3.ご希望メニュー</p>
+                                    <p>4.ご希望日時（第3希望まで）</p>
+                                    <p class="reservation-method-notice">確認後、こちらからご返信いたします。</p>
+                                </div>
+                            </div>
+                            <a href="https://lin.ee/Ymrm2i0" class="reservation-method-link">
+                                <img src="assets/images/btn-line.svg" alt="">
+                                <span>Official Line</span>
+                            </a>
+                        </div>
+
+                    <div class="reservation-method-box" id="motomachi">
+                        <img src="assets/images/img-reservation-motomachi.jpg" alt="">
+
+                        <div class="reservation-method-title">
+                            <h3 class="reservation-method-shop">atelier...m　元町店</h3>
+                            <div class="reservation-method-shop-line"></div>
+                        </div>
+                        <p class="reservation-method-desc">
+                            公式LINEの予約サイトにて承っております。
+                        </p>
+                        <img  class="reservation-method-img" src="assets/images/img-reservation-method-motomachi.png" alt="">
+                        <a href="https://lin.ee/Ymrm2i0" class="reservation-method-link">
+                            <img src="assets/images/btn-line.svg" alt="">
+                            <span>Official Line</span>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            </section>
+            <p class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>Reservation</span>
+            </p>
+        </main>
+        <footer class="footer">
+            <section class="footer-inner">
+                <img src="assets/images/logo-w.png" alt="NUURA">
+
+                <ul class="footer__list">
+                    <li class="footer__item"><a href="index.html">Home</a></li>
+                    <li class="footer__item"><a href="about.html">About</a></li>
+                    <li class="footer__item"><a href="menu.html">Menu</a></li>
+                    <li class="footer__item"><a href="question.html">Q&A</a></li>
+                    <li class="footer__item"><a href="access.html">Access</a></li>
+                    <li class="footer__item"><a href="reservation.html">Reservation</a></li>
+                </ul>
+
+                <p class="copy"><small>&copy; NUURA 2026</small></p>
+            </section>
+        </footer>
+    </div>
+     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>   
+</body>
+</html>
